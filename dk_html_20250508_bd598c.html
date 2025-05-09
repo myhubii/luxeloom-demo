@@ -1,0 +1,1400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LuxeLoom | Timeless Jewelry Elegance</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #d4af37;
+            --secondary: #a78bfa;
+            --dark: #0f0f15;
+            --darker: #08080c;
+            --light: #f8f8f8;
+            --overlay: rgba(15, 15, 21, 0.8);
+            --glow: 0 0 10px rgba(212, 175, 55, 0.7);
+            --glow-intense: 0 0 20px rgba(212, 175, 55, 0.9);
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--dark);
+            color: var(--light);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+        }
+
+        /* Particles Background */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            opacity: 0.3;
+        }
+
+        /* Glowing Elements */
+        .glow-effect {
+            position: relative;
+        }
+
+        .glow-effect::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: inherit;
+            box-shadow: var(--glow);
+            opacity: 0;
+            transition: var(--transition);
+            z-index: -1;
+        }
+
+        .glow-effect:hover::after {
+            opacity: 1;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            background-color: rgba(15, 15, 21, 0.5);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            transform: translateY(0);
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            padding: 1rem 5%;
+            background-color: rgba(15, 15, 21, 0.9);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: var(--light);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 2.5rem;
+        }
+
+        nav ul li a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--primary);
+            transition: var(--transition);
+        }
+
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--light);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 5%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, var(--overlay), transparent);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 600px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease-out forwards;
+            animation-delay: 0.3s;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.8rem 1.8rem;
+            border-radius: 30px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: var(--dark);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--primary);
+            box-shadow: var(--glow);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--primary);
+            color: var(--dark);
+            box-shadow: var(--glow);
+        }
+
+        .hero-image {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50%;
+            height: 80%;
+            background: url('https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80') no-repeat center center/cover;
+            border-radius: 20px 0 0 20px;
+            opacity: 0;
+            animation: fadeIn 1.5s ease-out forwards;
+            animation-delay: 0.6s;
+        }
+
+        /* Section Common Styles */
+        section {
+            padding: 6rem 5%;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .section-title p {
+            max-width: 600px;
+            margin: 0 auto;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Featured Products */
+        .featured-products {
+            background-color: var(--darker);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .featured-products::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, rgba(167, 139, 250, 0.1), transparent 70%);
+            pointer-events: none;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .product-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: var(--transition);
+            position: relative;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--glow);
+            border-color: rgba(212, 175, 55, 0.3);
+        }
+
+        .product-image {
+            height: 300px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background-color: var(--primary);
+            color: var(--dark);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-info h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-info p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .product-price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .price {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
+        .add-to-cart {
+            background-color: transparent;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .add-to-cart:hover {
+            background-color: var(--primary);
+            color: var(--dark);
+        }
+
+        /* About Us */
+        .about-us {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+        }
+
+        .about-content {
+            flex: 1;
+            opacity: 0;
+            transform: translateX(-30px);
+        }
+
+        .about-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .about-content p {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .about-image {
+            flex: 1;
+            position: relative;
+            opacity: 0;
+            transform: translateX(30px);
+        }
+
+        .about-image-main {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            width: 100%;
+            height: 100%;
+            border: 2px solid var(--primary);
+            border-radius: 10px;
+            z-index: -1;
+            opacity: 0.5;
+        }
+
+        .about-image::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            width: 100%;
+            height: 100%;
+            border: 2px solid var(--secondary);
+            border-radius: 10px;
+            z-index: -1;
+            opacity: 0.5;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background-color: var(--darker);
+            position: relative;
+        }
+
+        .testimonials::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="rgba(212, 175, 55, 0.03)" d="M0,0 L100,0 L100,100 Q50,80 0,100"></path></svg>') no-repeat bottom center/100% 30%;
+            pointer-events: none;
+        }
+
+        .testimonial-slider {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .testimonial {
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 2.5rem;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            transition: var(--transition);
+        }
+
+        .testimonial:hover {
+            border-color: rgba(212, 175, 55, 0.3);
+            box-shadow: var(--glow);
+        }
+
+        .testimonial-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.9);
+            position: relative;
+        }
+
+        .testimonial-text::before,
+        .testimonial-text::after {
+            content: '"';
+            font-size: 3rem;
+            color: var(--primary);
+            opacity: 0.3;
+            position: absolute;
+        }
+
+        .testimonial-text::before {
+            top: -20px;
+            left: -15px;
+        }
+
+        .testimonial-text::after {
+            bottom: -40px;
+            right: -15px;
+        }
+
+        .testimonial-author {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .author-image {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-bottom: 1rem;
+            border: 2px solid var(--primary);
+        }
+
+        .author-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .author-info h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
+            color: var(--primary);
+        }
+
+        .author-info p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        .slider-controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .slider-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .slider-dot.active {
+            background-color: var(--primary);
+            transform: scale(1.2);
+        }
+
+        /* Newsletter */
+        .newsletter {
+            text-align: center;
+            background: linear-gradient(to right, var(--darker), var(--dark));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .newsletter::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="rgba(212, 175, 55, 0.03)" d="M0,0 L100,0 L100,100 Q50,80 0,100"></path></svg>') no-repeat top center/100% 30%;
+            pointer-events: none;
+        }
+
+        .newsletter-form {
+            max-width: 500px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .form-group {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 30px;
+            color: var(--light);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: var(--glow);
+        }
+
+        .form-group label {
+            position: absolute;
+            top: 1rem;
+            left: 1.5rem;
+            color: rgba(255, 255, 255, 0.7);
+            transition: var(--transition);
+            pointer-events: none;
+        }
+
+        .form-group input:focus + label,
+        .form-group input:not(:placeholder-shown) + label {
+            top: -10px;
+            left: 1rem;
+            font-size: 0.8rem;
+            background-color: var(--dark);
+            padding: 0 0.5rem;
+            color: var(--primary);
+        }
+
+        .newsletter-btn {
+            width: 100%;
+            padding: 1rem;
+            border-radius: 30px;
+            background-color: var(--primary);
+            color: var(--dark);
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .newsletter-btn:hover {
+            box-shadow: var(--glow-intense);
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--darker);
+            padding: 4rem 5% 2rem;
+            position: relative;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 50%;
+            height: 2px;
+            background-color: var(--primary);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-column ul li a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--primary);
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--light);
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary);
+            color: var(--dark);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+
+        .lightning {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .lightning::before {
+            content: '';
+            position: absolute;
+            top: -100%;
+            left: 50%;
+            width: 2px;
+            height: 200px;
+            background: linear-gradient(to bottom, transparent, var(--primary), transparent);
+            animation: lightning 8s linear infinite;
+            opacity: 0;
+        }
+
+        .lightning::after {
+            content: '';
+            position: absolute;
+            top: -100%;
+            left: 30%;
+            width: 1px;
+            height: 150px;
+            background: linear-gradient(to bottom, transparent, var(--secondary), transparent);
+            animation: lightning 10s linear infinite 2s;
+            opacity: 0;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from { 
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from { 
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from { 
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes lightning {
+            0% {
+                top: -100%;
+                opacity: 0;
+            }
+            2% {
+                opacity: 0.3;
+            }
+            4% {
+                opacity: 0;
+            }
+            6% {
+                opacity: 0.6;
+            }
+            8% {
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+                top: 120%;
+            }
+            100% {
+                top: 120%;
+                opacity: 0;
+            }
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .about-us {
+                flex-direction: column;
+            }
+            
+            .about-content, .about-image {
+                width: 100%;
+            }
+            
+            .about-image {
+                margin-top: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 1rem 5%;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: var(--darker);
+                padding: 1rem 5%;
+                transform: translateY(-150%);
+                transition: var(--transition);
+                opacity: 0;
+                border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            }
+            
+            nav.active {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            
+            nav ul {
+                flex-direction: column;
+            }
+            
+            nav ul li {
+                margin: 0.5rem 0;
+            }
+            
+            .hero {
+                flex-direction: column;
+                justify-content: center;
+                text-align: center;
+                padding-top: 80px;
+            }
+            
+            .hero-content {
+                max-width: 100%;
+            }
+            
+            .hero-btns {
+                justify-content: center;
+            }
+            
+            .hero-image {
+                position: relative;
+                width: 100%;
+                height: 300px;
+                margin-top: 2rem;
+                transform: none;
+                border-radius: 0;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .hero-btns {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Intersection Observer Animations */
+        .animate {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .animate-left {
+            transform: translateX(-30px);
+        }
+
+        .animate-right {
+            transform: translateX(30px);
+        }
+
+        .animate.show {
+            opacity: 1;
+            transform: translate(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Particles Background -->
+    <div id="particles-js"></div>
+
+    <!-- Header -->
+    <header id="header">
+        <a href="#" class="logo">Luxe<span>Loom</span></a>
+        <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+        <nav id="nav">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#products">Collections</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Discover Timeless Elegance</h1>
+            <p>Each piece in our collection is meticulously crafted to embody the perfect balance between contemporary design and timeless sophistication.</p>
+            <div class="hero-btns">
+                <a href="#products" class="btn btn-primary glow-effect">Shop Now</a>
+                <a href="#about" class="btn btn-secondary glow-effect">Explore</a>
+            </div>
+        </div>
+        <div class="hero-image"></div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="featured-products" id="products">
+        <div class="section-title animate">
+            <h2>Our Collections</h2>
+            <p>Handcrafted with precision and passion, our jewelry pieces are designed to be cherished for generations.</p>
+        </div>
+        <div class="products-grid animate">
+            <div class="product-card glow-effect">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1602173574767-37ac01994b2a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=735&q=80" alt="Diamond Necklace">
+                    <span class="product-badge">New</span>
+                </div>
+                <div class="product-info">
+                    <h3>Celestial Diamond Necklace</h3>
+                    <p>A breathtaking necklace featuring a brilliant-cut diamond surrounded by delicate pavé diamonds.</p>
+                    <div class="product-price">
+                        <span class="price">$2,499</span>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card glow-effect">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Gold Ring">
+                    <span class="product-badge">Popular</span>
+                </div>
+                <div class="product-info">
+                    <h3>Eternal Gold Band</h3>
+                    <p>18K gold band with intricate hand-engraved patterns, symbolizing eternal love and commitment.</p>
+                    <div class="product-price">
+                        <span class="price">$1,199</span>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card glow-effect">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Sapphire Earrings">
+                </div>
+                <div class="product-info">
+                    <h3>Sapphire Teardrop Earrings</h3>
+                    <p>Exquisite blue sapphires set in white gold, designed to catch the light with every movement.</p>
+                    <div class="product-price">
+                        <span class="price">$1,899</span>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card glow-effect">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1611591437281-4608be122683?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Pearl Bracelet">
+                    <span class="product-badge">Limited</span>
+                </div>
+                <div class="product-info">
+                    <h3>Pearl & Diamond Bracelet</h3>
+                    <p>South Sea pearls alternated with brilliant diamonds on a delicate platinum chain.</p>
+                    <div class="product-price">
+                        <span class="price">$3,299</span>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us -->
+    <section class="about-us" id="about">
+        <div class="about-content animate animate-left">
+            <h2>Our Craftsmanship</h2>
+            <p>Founded in 1985, LuxeLoom has been creating exquisite jewelry pieces that stand the test of time. Our master jewelers combine traditional techniques with innovative designs to create wearable art.</p>
+            <p>Each piece is crafted with ethically sourced gemstones and precious metals, ensuring not only beauty but also responsibility towards our planet and its people.</p>
+            <p>We believe jewelry should tell a story - yours. That's why we offer bespoke services to create one-of-a-kind pieces that reflect your personal journey.</p>
+            <a href="#contact" class="btn btn-secondary glow-effect">Contact Our Designers</a>
+        </div>
+        <div class="about-image animate animate-right">
+            <img src="https://images.unsplash.com/photo-1603974372035-96d7c7a88c78?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Jewelry Workshop" class="about-image-main">
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials" id="testimonials">
+        <div class="section-title animate">
+            <h2>Client Stories</h2>
+            <p>Hear from those who have experienced the LuxeLoom difference.</p>
+        </div>
+        <div class="testimonial-slider animate">
+            <div class="testimonial">
+                <p class="testimonial-text">The engagement ring from LuxeLoom exceeded all my expectations. The craftsmanship is impeccable, and the attention to detail is unlike anything I've seen before. My fiancée hasn't stopped receiving compliments.</p>
+                <div class="testimonial-author">
+                    <div class="author-image">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael R.">
+                    </div>
+                    <div class="author-info">
+                        <h4>Michael R.</h4>
+                        <p>New York</p>
+                    </div>
+                </div>
+            </div>
+            <div class="slider-controls">
+                <div class="slider-dot active"></div>
+                <div class="slider-dot"></div>
+                <div class="slider-dot"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter" id="contact">
+        <div class="section-title animate">
+            <h2>Stay Connected</h2>
+            <p>Join our exclusive list to receive early access to new collections and private events.</p>
+        </div>
+        <form class="newsletter-form animate">
+            <div class="form-group">
+                <input type="email" id="email" placeholder=" " required>
+                <label for="email">Your Email Address</label>
+            </div>
+            <button type="submit" class="newsletter-btn glow-effect">Subscribe</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="lightning"></div>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>LuxeLoom</h3>
+                <p>Creating timeless jewelry pieces since 1985. Each design tells a story of craftsmanship, luxury, and elegance.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-pinterest"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#products">Collections</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Customer Care</h3>
+                <ul>
+                    <li><a href="#">Shipping Policy</a></li>
+                    <li><a href="#">Returns & Exchanges</a></li>
+                    <li><a href="#">Product Care</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Contact Us</h3>
+                <ul>
+                    <li>123 Jewelry Avenue</li>
+                    <li>New York, NY 10001</li>
+                    <li>+1 (555) 123-4567</li>
+                    <li>info@luxeloom.com</li>
+                    <li>Mon-Fri: 9AM - 6PM</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 LuxeLoom Jewelry. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Font Awesome for icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <!-- Particles.js -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const nav = document.getElementById('nav');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            mobileMenuBtn.innerHTML = nav.classList.contains('active') ? '✕' : '☰';
+        });
+
+        // Header Scroll Effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Testimonial Slider
+        const testimonials = [
+            {
+                text: "The engagement ring from LuxeLoom exceeded all my expectations. The craftsmanship is impeccable, and the attention to detail is unlike anything I've seen before. My fiancée hasn't stopped receiving compliments.",
+                author: "Michael R.",
+                location: "New York",
+                image: "https://randomuser.me/api/portraits/men/32.jpg"
+            },
+            {
+                text: "I purchased a custom necklace for my wife's anniversary and the entire process was exceptional. The designers listened to my ideas and created something more beautiful than I could have imagined.",
+                author: "Sarah L.",
+                location: "Los Angeles",
+                image: "https://randomuser.me/api/portraits/women/44.jpg"
+            },
+            {
+                text: "As someone who collects fine jewelry, I can confidently say LuxeLoom pieces stand out. The quality is outstanding and their designs are truly unique. I'm a customer for life.",
+                author: "James T.",
+                location: "Chicago",
+                image: "https://randomuser.me/api/portraits/men/75.jpg"
+            }
+        ];
+
+        const testimonialElement = document.querySelector('.testimonial');
+        const authorImage = document.querySelector('.author-image img');
+        const authorName = document.querySelector('.author-info h4');
+        const authorLocation = document.querySelector('.author-info p');
+        const testimonialText = document.querySelector('.testimonial-text');
+        const dots = document.querySelectorAll('.slider-dot');
+
+        let currentTestimonial = 0;
+
+        function showTestimonial(index) {
+            const testimonial = testimonials[index];
+            testimonialText.textContent = testimonial.text;
+            authorImage.src = testimonial.image;
+            authorName.textContent = testimonial.author;
+            authorLocation.textContent = testimonial.location;
+            
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
+        }
+
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                currentTestimonial = index;
+                showTestimonial(currentTestimonial);
+            });
+        });
+
+        // Auto-rotate testimonials
+        setInterval(() => {
+            currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+            showTestimonial(currentTestimonial);
+        }, 5000);
+
+        // Intersection Observer for scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        document.querySelectorAll('.animate').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Particles.js Configuration
+        particlesJS('particles-js', {
+            "particles": {
+                "number": {
+                    "value": 80,
+                    "density": {
+                        "enable": true,
+                        "value_area": 800
+                    }
+                },
+                "color": {
+                    "value": "#d4af37"
+                },
+                "shape": {
+                    "type": "circle",
+                    "stroke": {
+                        "width": 0,
+                        "color": "#000000"
+                    },
+                    "polygon": {
+                        "nb_sides": 5
+                    }
+                },
+                "opacity": {
+                    "value": 0.5,
+                    "random": true,
+                    "anim": {
+                        "enable": true,
+                        "speed": 1,
+                        "opacity_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "size": {
+                    "value": 3,
+                    "random": true,
+                    "anim": {
+                        "enable": true,
+                        "speed": 2,
+                        "size_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#d4af37",
+                    "opacity": 0.2,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 1,
+                    "direction": "none",
+                    "random": true,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false,
+                    "attract": {
+                        "enable": true,
+                        "rotateX": 600,
+                        "rotateY": 1200
+                    }
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "grab"
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "push"
+                    },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": {
+                        "distance": 140,
+                        "line_linked": {
+                            "opacity": 0.5
+                        }
+                    },
+                    "bubble": {
+                        "distance": 400,
+                        "size": 40,
+                        "duration": 2,
+                        "opacity": 8,
+                        "speed": 3
+                    },
+                    "repulse": {
+                        "distance": 200,
+                        "duration": 0.4
+                    },
+                    "push": {
+                        "particles_nb": 4
+                    },
+                    "remove": {
+                        "particles_nb": 2
+                    }
+                }
+            },
+            "retina_detect": true
+        });
+
+        // Form Submission
+        const newsletterForm = document.querySelector('.newsletter-form');
+        newsletterForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            // Here you would typically send the email to your server
+            alert(`Thank you for subscribing with ${email}! You'll hear from us soon.`);
+            newsletterForm.reset();
+        });
+    </script>
+</body>
+</html>
